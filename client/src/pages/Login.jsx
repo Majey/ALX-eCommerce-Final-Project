@@ -11,7 +11,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    url(""https://i.ibb.co/Z1Tg7Wg/Yellow-female-fashion-accessories-shoes-and-handbag-over-orange-background-Beauty-shopping-urban-out.jpg"")
       center;
   background-size: cover;
   display: flex;
