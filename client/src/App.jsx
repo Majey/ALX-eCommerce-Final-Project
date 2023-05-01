@@ -1,44 +1,34 @@
-import Product from "./pages/Product";
+import Cart from "./pages/Cart";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Product from "./pages/Product";
 import ProductList from "./pages/ProductList";
 import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Cart from "./pages/Cart";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
 import Success from "./pages/Success";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/products/:category">
-          <ProductList />
-        </Route>
-        <Route path="/product/:id">
-          <Product />
-        </Route>
-        <Route path="/cart">
-          <Cart />
-        </Route>
-        <Route path="/success">
-          <Success />
-        </Route>
-        <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
-        <Route path="/register">
-          {user ? <Redirect to="/" /> : <Register />}
-        </Route>
-      </Switch>
-    </Router>
+    <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Home/>}/>
+          <Route path="/login" element={user ? <Navigate replace to="/"/> : <Login />}/>
+            {/* If user is logged in, then redirect to home page, else go to login page */}
+          <Route exact path="/cart" element={<Cart/>}/>
+          <Route exact path="/Success" element={<Success/>}/>
+          <Route exact path="/product/:id" element={<Product/>}/>
+          <Route exact path="/products/:category" element={<ProductList/>}/>
+          <Route exact path="/register" element={ user? <Navigate to="/"/> : <Register/>}/>
+          {/* <Route path="*" element={<NotFound/>}/> */}
+        </Routes>
+    </BrowserRouter>
   );
 };
 
